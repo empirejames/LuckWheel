@@ -103,7 +103,7 @@ public class RotatePan extends View {
         }
 
         images = iconLists.toArray(new Integer[iconLists.size()]);
-        Log.e("images", Arrays.toString(images));
+        //Log.e("images", Arrays.toString(images));
         typedArray.recycle();
         if(strs == null || images == null)
             throw new RuntimeException("Can't find string or icon resources.");
@@ -152,7 +152,7 @@ public class RotatePan extends View {
         RectF rectF = new RectF(getPaddingLeft(),getPaddingTop(),width,height);
 
         int angle = (panNum%4 ==0) ? InitAngle : InitAngle-diffRadius;
-        Log.e("angle", String.valueOf(angle));
+        //Log.e("angle", String.valueOf(angle));
 
         for(int i= 0;i<panNum;i++){
             if(i%2 == 0){

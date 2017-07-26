@@ -42,7 +42,7 @@ public class EnvironmentLayout extends RelativeLayout implements View.OnClickLis
     private void createLayerOne(){
         ImageView imageView = new ImageView(context);
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        imageView.setImageResource(R.mipmap.shan);
+        imageView.setImageResource(R.mipmap.gress);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
         imageView.setId(R.id.shan_id);
         lp.addRule(ALIGN_PARENT_BOTTOM);

@@ -47,11 +47,7 @@ public class MainActivity extends AppCompatActivity implements RotatePan.Animati
         tinydb = new TinyDB(MainActivity.this);
         txt_Spotline = (TextView) findViewById(R.id.hit_user_tv);
         hit_items = (TextView) findViewById(R.id.hit_user_tv);
-        if  (customStrArray.length!=0){
-            strs = customStrArray;
-        }else{
-            strs = getResources().getStringArray(R.array.names);
-        }
+        strs = getResources().getStringArray(R.array.names);
         luckPanLayout = (LuckPanLayout) findViewById(R.id.luckpan_layout);
         luckPanLayout.startLuckLight();
         rotatePan = (RotatePan) findViewById(R.id.rotatePan);
@@ -131,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements RotatePan.Animati
         btnReadNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (tinydb.getListString("customer")!=null){
+                if (tinydb.getListString("customer").size()!=0){
                     tinydb.getListString("customer");
                     editText1.setText(tinydb.getListString("customer").get(0));
                     editText2.setText(tinydb.getListString("customer").get(1));
@@ -139,8 +135,8 @@ public class MainActivity extends AppCompatActivity implements RotatePan.Animati
                     editText4.setText(tinydb.getListString("customer").get(3));
                     editText5.setText(tinydb.getListString("customer").get(4));
                     editText6.setText(tinydb.getListString("customer").get(5));
-
-                    Log.e(TAG,tinydb.getListString("customer").toString());
+                }else{
+                    Toast.makeText(MainActivity.this, "沒有上一次的紀錄", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -157,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements RotatePan.Animati
                 rotatePan.setStr(customStrArray);
                 txt_Spotline.setText(customStrArray[0] +" 、 " + customStrArray[1] +" 、 " + customStrArray[2] +" 、 "+ customStrArray[3]+" 、 " + customStrArray[4]+" 、 " + customStrArray[5] );
                 txt_Spotline.setSelected(true);
-                Log.e(TAG,customStrArray[0] + customStrArray[1]);
+                strs = customStrArray;
                 tinydb.putListString("customer",a);
                 alert.dismiss();
             }

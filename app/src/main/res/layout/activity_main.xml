@@ -42,14 +42,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:scaleType="fitXY"
-            android:src="@mipmap/shan" />
+            android:src="@mipmap/gress" />
 
         <ImageView
             android:id="@+id/yun"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitXY"
-            android:src="@mipmap/yun" />
+            android:src="@mipmap/sun" />
 
         <com.james.luckwheel.view.LuckPanLayout
             android:id="@+id/luckpan_layout"
@@ -67,14 +67,6 @@
             luckpan:icons="@array/icons"
             luckpan:names="@array/names"
             luckpan:pannum="6" />
-
-        <!--<Button-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="旋转"-->
-        <!--android:onClick="rotation"-->
-        <!--/>-->
-
         <ImageView
             android:id="@+id/go"
             android:layout_width="wrap_content"
