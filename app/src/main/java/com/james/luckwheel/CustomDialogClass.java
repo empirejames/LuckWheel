@@ -40,7 +40,6 @@ public class CustomDialogClass extends Dialog implements android.view.View.OnCli
                 dialog.dismiss();
             }
         });
-
         dialog.show();
 
     }

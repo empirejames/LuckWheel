@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.james.luckwheel.view.EnvironmentLayout;
 import com.james.luckwheel.view.LuckPanLayout;
 import com.james.luckwheel.view.RotatePan;
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements RotatePan.Animati
     private TextView txt_Spotline;
     private TinyDB tinydb;
     private CustomDialogClass cusDialog;
+    private InterstitialAd interstitial;
+    private int countAd = 0;
+    private AdRequest adRequest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,10 +89,7 @@ public class MainActivity extends AppCompatActivity implements RotatePan.Animati
                 lp = (RelativeLayout.LayoutParams) rotatePan.getLayoutParams();
                 lp.height = MinValue;
                 lp.width = MinValue;
-
                 rotatePan.setLayoutParams(lp);
-
-
                 lp = (RelativeLayout.LayoutParams) goBtn.getLayoutParams();
                 lp.topMargin += backHeight;
                 lp.topMargin -= (goBtn.getHeight() / 2);
@@ -96,12 +97,32 @@ public class MainActivity extends AppCompatActivity implements RotatePan.Animati
                 getWindow().getDecorView().requestLayout();
             }
         });
+        interstitial = new InterstitialAd(this);
+        interstitial.setAdUnitId("ca-app-pub-1659435325076970/8309133815");
+        adRequest = new AdRequest.Builder().addTestDevice("F618803C89E1614E3394A55D5E7A756B").build();
+        interstitial.loadAd(adRequest);
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequestAA = new AdRequest.Builder().addTestDevice("F618803C89E1614E3394A55D5E7A756B").build();
+        mAdView.loadAd(adRequestAA);
     }
 
     public void rotation(View view) {
         rotatePan.startRotate(-1);
         luckPanLayout.setDelayTime(100);
         goBtn.setEnabled(false);
+        countAd +=1;
+        if (countAd==5){
+            displayInterstitial();
+            countAd = 0;
+        }
+    }
+    public void displayInterstitial() {
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+        }else{
+            interstitial.loadAd(adRequest);
+        }
     }
 
     @Override
