@@ -43,7 +43,7 @@ public class RotatePan extends View {
     private int radius = 0;
     private int verPanRadius ;
     private int diffRadius ;
-    ArrayList<String> items = new ArrayList<String>();
+    String[] items = new String[6];
 
     public static final int FLING_VELOCITY_DOWNSCALE = 4;
 
@@ -195,8 +195,6 @@ public class RotatePan extends View {
 
         float x = (float) (xx + mRadius / 2 * Math.cos(angle));
         float y = (float) (yy + mRadius / 2  * Math.sin(angle));
-
-        // 确定绘制图片的位置
         RectF rect = new RectF(x - imgWidth *3/ 4, y - imgWidth*3 / 4, x + imgWidth
                 *3/ 4, y + imgWidth*3/4);
 
@@ -216,14 +214,7 @@ public class RotatePan extends View {
         this.invalidate();
     }
 
-    //旋转一圈所需要的时间
-    private static final long ONE_WHEEL_TIME = 500;
-
-
-    /**
-     * 开始转动
-     * @param pos 如果 pos = -1 则随机，如果指定某个值，则转到某个指定区域
-     */
+    private static final long ONE_WHEEL_TIME = 800;
     public void startRotate(int pos){
 
         int lap = (int) (Math.random()*12) + 4;
@@ -309,10 +300,6 @@ public class RotatePan extends View {
         super.onDetachedFromWindow();
         clearAnimation();
     }
-
-
-    // TODO ==================================== 手势处理 ===============================================================
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
@@ -382,8 +369,6 @@ public class RotatePan extends View {
             return true;
         }
     }
-
-    //TODO 判断滑动的方向
     private float vectorToScalarScroll(float dx, float dy, float x, float y) {
 
         float l = (float) Math.sqrt(dx * dx + dy * dy);
@@ -396,12 +381,4 @@ public class RotatePan extends View {
 
         return l * sign;
     }
-
-    public void setRotateItem(ArrayList items) {
-        this.items = items;
-
-    }
-
-
-
 }

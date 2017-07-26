@@ -3,8 +3,11 @@ package com.james.luckwheel;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -15,6 +18,12 @@ import com.james.luckwheel.view.EnvironmentLayout;
 import com.james.luckwheel.view.LuckPanLayout;
 import com.james.luckwheel.view.RotatePan;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements RotatePan.AnimationEndListener{
     private EnvironmentLayout layout;
     private RotatePan rotatePan;
@@ -24,13 +33,25 @@ public class MainActivity extends AppCompatActivity implements RotatePan.Animati
     private ImageView yunIv;
     private String[] item;
     private String[] strs;
+    private Button btnDiglog, btnReadNext;
+    private EditText editText1, editText2, editText3, editText4, editText5, editText6;
+    private String [] customStrArray = new String[6];
+    private String TAG = MainActivity.class.getSimpleName();
+    private TextView txt_Spotline;
+    private TinyDB tinydb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tinydb = new TinyDB(MainActivity.this);
+        txt_Spotline = (TextView) findViewById(R.id.hit_user_tv);
         hit_items = (TextView) findViewById(R.id.hit_user_tv);
-        strs = getResources().getStringArray(R.array.names);
+        if  (customStrArray.length!=0){
+            strs = customStrArray;
+        }else{
+            strs = getResources().getStringArray(R.array.names);
+        }
         luckPanLayout = (LuckPanLayout) findViewById(R.id.luckpan_layout);
         luckPanLayout.startLuckLight();
         rotatePan = (RotatePan) findViewById(R.id.rotatePan);
@@ -95,9 +116,53 @@ public class MainActivity extends AppCompatActivity implements RotatePan.Animati
         AlertDialog.Builder optionDialog = new AlertDialog.Builder(this);
         FrameLayout frameLayout = new FrameLayout(optionDialog.getContext());
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View myView = inflater.inflate(R.layout.activity_dialog, frameLayout);
+        btnDiglog = (Button) myView.findViewById(R.id.dialog_btn);
+        btnReadNext = (Button) myView.findViewById(R.id.btn_readData);
+        editText1 = (EditText)myView.findViewById(R.id.editText3);
+        editText2 = (EditText)myView.findViewById(R.id.editText4);
+        editText3 = (EditText)myView.findViewById(R.id.editText5);
+        editText4 = (EditText)myView.findViewById(R.id.editText6);
+        editText5 = (EditText)myView.findViewById(R.id.editText7);
+        editText6 = (EditText)myView.findViewById(R.id.editText8);
         optionDialog.setView(frameLayout);
         final AlertDialog alert = optionDialog.create();
-        View myView = inflater.inflate(R.layout.activity_dialog, frameLayout);
+        final ArrayList a = new ArrayList();
+        btnReadNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tinydb.getListString("customer")!=null){
+                    tinydb.getListString("customer");
+                    editText1.setText(tinydb.getListString("customer").get(0));
+                    editText2.setText(tinydb.getListString("customer").get(1));
+                    editText3.setText(tinydb.getListString("customer").get(2));
+                    editText4.setText(tinydb.getListString("customer").get(3));
+                    editText5.setText(tinydb.getListString("customer").get(4));
+                    editText6.setText(tinydb.getListString("customer").get(5));
+
+                    Log.e(TAG,tinydb.getListString("customer").toString());
+                }
+            }
+        });
+        btnDiglog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customStrArray [0] = editText1.getText().toString();
+                customStrArray [1] = editText2.getText().toString();
+                customStrArray [2] = editText3.getText().toString();
+                customStrArray [3] = editText4.getText().toString();
+                customStrArray [4] = editText5.getText().toString();
+                customStrArray [5] = editText6.getText().toString();
+                Collections.addAll(a, customStrArray);
+                rotatePan.setStr(customStrArray);
+                txt_Spotline.setText(customStrArray[0] +" 、 " + customStrArray[1] +" 、 " + customStrArray[2] +" 、 "+ customStrArray[3]+" 、 " + customStrArray[4]+" 、 " + customStrArray[5] );
+                txt_Spotline.setSelected(true);
+                Log.e(TAG,customStrArray[0] + customStrArray[1]);
+                tinydb.putListString("customer",a);
+                alert.dismiss();
+            }
+        });
         alert.show();
+
     }
 }

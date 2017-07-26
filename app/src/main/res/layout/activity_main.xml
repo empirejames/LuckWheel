@@ -103,13 +103,14 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/text_background"
+                android:singleLine="true"
                 android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:gravity="center"
-                android:marqueeRepeatLimit="marquee_forever"
                 android:padding="10dp"
-                android:singleLine="true"
+
                 android:text="@string/item_list">
 
                 <requestFocus />

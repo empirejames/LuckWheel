@@ -119,14 +119,10 @@ public class EnvironmentLayout extends RelativeLayout implements View.OnClickLis
         lp.addRule(CENTER_IN_PARENT);
         addView(node,lp);
     }
-
-
     public void startLuck(){
         if(rotatePan != null)
             rotatePan.startRotate(-1);
     }
-
-
 
     @Override
     public void onClick(View v) {
