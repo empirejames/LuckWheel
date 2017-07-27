@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.james.luckwheel.view.EnvironmentLayout;
 import com.james.luckwheel.view.LuckPanLayout;
 import com.james.luckwheel.view.RotatePan;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements RotatePan.Animati
     private InterstitialAd interstitial;
     private int countAd = 0;
     private AdRequest adRequest;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements RotatePan.Animati
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequestAA = new AdRequest.Builder().addTestDevice("F618803C89E1614E3394A55D5E7A756B").build();
         mAdView.loadAd(adRequestAA);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
 
     public void rotation(View view) {

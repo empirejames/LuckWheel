@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="names">
-        <item>lion</item>
-        <item>mouse</item>
-        <item>zebra</item>
-        <item>dog</item>
-        <item>camel</item>
-        <item>fox</item>
+        <item>獅子</item>
+        <item>老鼠</item>
+        <item>斑馬</item>
+        <item>狗</item>
+        <item>駱駝</item>
+        <item>狐狸</item>
     </string-array>
 
     <string-array name="icons">
