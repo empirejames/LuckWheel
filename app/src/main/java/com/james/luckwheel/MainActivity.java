@@ -73,9 +73,7 @@ public class MainActivity extends AppCompatActivity implements RotatePan.Animati
             public void run() {
                 int height = getWindow().getDecorView().getHeight();
                 int width = getWindow().getDecorView().getWidth();
-
                 int backHeight = 0;
-
                 int MinValue = Math.min(width, height);
                 MinValue -= Util.dip2px(MainActivity.this, 10) * 2;
                 backHeight = MinValue / 2;
