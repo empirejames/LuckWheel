@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "246408741932",
+    "firebase_url": "https://luckwheel-6b006.firebaseio.com",
+    "project_id": "luckwheel-6b006",
+    "storage_bucket": "luckwheel-6b006.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246408741932:android:5b1e3a8c9982c6ce",
+        "android_client_info": {
+          "package_name": "com.james.luckwheel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246408741932-mtsb714rspsb31bh0hqd068ebq1vc4v5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.james.luckwheel",
+            "certificate_hash": "ff5a25a354a97852f5a0de8b4d7d7dc8a5e01fdb"
+          }
+        },
+        {
+          "client_id": "246408741932-cutlra42n55l1eij6qkt01pd3e2ph6hb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.james.luckwheel",
+            "certificate_hash": "c66a22ab50dcbe2cc439975388e27abb3d3aeca3"
+          }
+        },
+        {
+          "client_id": "246408741932-u9va20k3hm5dsd4l40bqvfkquravr8su.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9OkGxPP9zCmAtgXUMtdTwyP_AALLVVqE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246408741932-u9va20k3hm5dsd4l40bqvfkquravr8su.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
