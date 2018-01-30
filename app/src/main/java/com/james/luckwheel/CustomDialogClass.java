@@ -4,6 +4,7 @@ package com.james.luckwheel;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
+
 public class CustomDialogClass extends Dialog implements android.view.View.OnClickListener {
     public Activity c;
     public Context context;
@@ -19,11 +23,13 @@ public class CustomDialogClass extends Dialog implements android.view.View.OnCli
     public Button yes;
     public TextView txt_String;
     public String result = "";
+    KonfettiView viewKonfetti;
     String TAG = CustomDialogClass.class.getSimpleName();
 
     public CustomDialogClass(Context context) {
         super(context);
         this.context = context;
+        viewKonfetti = (KonfettiView)((Activity) context).findViewById(R.id.viewKonfetti);
     }
 
     public void showDialog(Activity activity, String msg) {
@@ -41,6 +47,19 @@ public class CustomDialogClass extends Dialog implements android.view.View.OnCli
             }
         });
         dialog.show();
+    }
+
+    public void celebrate(){
+        viewKonfetti.build()
+                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                .setDirection(0.0, 359.0)
+                .setSpeed(1f, 5f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(2000L)
+                .addShapes(Shape.RECT, Shape.CIRCLE)
+                .setPosition(-50f, viewKonfetti.getWidth() + 50f, -50f, -50f)
+                .stream(300, 5000L);
+        Log.e(TAG,"viewKonfetti.getWidth() : " + viewKonfetti.getWidth());
     }
 
     @Override
